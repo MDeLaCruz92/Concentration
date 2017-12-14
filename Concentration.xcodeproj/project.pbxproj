@@ -58,9 +58,9 @@
 		82B31F561FB933E3008852AC /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
-				82B31F591FB933E3008852AC /* ViewController.swift */,
-				82B31F6A1FB9E34D008852AC /* Concentration.swift */,
-				82B31F6C1FB9E432008852AC /* Card.swift */,
+				82B31F701FBC868D008852AC /* Model */,
+				82B31F6F1FBC8675008852AC /* View */,
+				82B31F6E1FBC866C008852AC /* Controller */,
 				82B31F5B1FB933E3008852AC /* Main.storyboard */,
 				82B31F691FB9351F008852AC /* Supporting Files */,
 				82B31F631FB933E3008852AC /* Info.plist */,
@@ -76,6 +76,30 @@
 				82B31F601FB933E3008852AC /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82B31F6E1FBC866C008852AC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				82B31F591FB933E3008852AC /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		82B31F6F1FBC8675008852AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82B31F701FBC868D008852AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82B31F6C1FB9E432008852AC /* Card.swift */,
+				82B31F6A1FB9E34D008852AC /* Concentration.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
