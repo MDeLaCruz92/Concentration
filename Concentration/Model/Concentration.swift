@@ -9,9 +9,11 @@
 import Foundation
 
 class Concentration
-{
+{    
+    var scoreCount = 0
+        
     private(set) var cards = [Card]()
-    
+        
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             var foundIndex: Int?
@@ -33,14 +35,45 @@ class Concentration
         }
     }
     
+    private var identityStorage = [Int]()
+    private var matchIndexStorage = [Int]()
+    
+
+    private var currentTime = Date().addingTimeInterval(10.0)
+    
     func chooseCard(at index: Int) {
-        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
+        let timeCounter = Date()
+        
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    scoreCount += 2
+                    
+                    if timeCounter < currentTime {
+                        scoreCount += 1
+                        currentTime = Date().addingTimeInterval(10.0)
+                    }
+                } else {
+                    if timeCounter > currentTime {
+                        scoreCount -= 1
+                        currentTime = Date().addingTimeInterval(10.0)
+                    }
+                    var misMatches = [Int]()
+                    misMatches += [cards[matchIndex].identifier, cards[index].identifier]
+                    for misMatch in misMatches {
+                        if identityStorage.contains(misMatch) {
+                            scoreCount -= 1
+                        }
+                    }
+                    if !identityStorage.contains(cards[index].identifier) {
+                        identityStorage.append(cards[index].identifier)
+                    }
+                    if !identityStorage.contains(cards[matchIndex].identifier) {
+                        identityStorage.append(cards[matchIndex].identifier)
+                    }
                 }
                 cards[index].isFaceUp = true
             } else {
@@ -48,13 +81,18 @@ class Concentration
             }
         }
     }
-    
+ 
     init(numberOfPairsOfCards: Int) {
-        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards)): you must have at least have one pair of cards")
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
-        // TODO: Shuffle the cards
+        
+        var cardsShuffled = [Card]()
+        for _ in cards.indices {
+            cardsShuffled.append(cards.remove(at: cards.count.arc4random))
+        }
+        cards = cardsShuffled
     }
+
 }

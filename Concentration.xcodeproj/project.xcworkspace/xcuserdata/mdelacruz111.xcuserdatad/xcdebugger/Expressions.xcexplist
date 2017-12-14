@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Concentration.init(numberOfPairsOfCards:):Concentration.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.emoji(for:):ViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
